@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Landing Page Generator - Create your custom sales page in one minute">
+    <title>Generator - Ecom Launch Pad</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="tool.html">Tool</a>
+        <div class="nav-right">
+            <button id="template-toggle" class="nav-btn" title="View Templates">📚 Templates</button>
+            <button id="theme-toggle" class="theme-toggle" title="Toggle dark mode">🌙</button>
+        </div>
+    </nav>
+
+    <div class="tool-container">
+        <!-- Sidebar / Editor Panel -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1>✨ Builder Panel</h1>
+                <button id="save-draft-btn" class="btn-small">💾 Save Draft</button>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="basic">Basic</button>
+                <button class="tab-btn" data-tab="design">Design</button>
+                <button class="tab-btn" data-tab="advanced">Advanced</button>
+            </div>
+
+            <!-- Basic Tab -->
+            <div class="tab-content active" id="basic">
+                <div class="form-group">
+                    <label>🔗 Payment Link *</label>
+                    <input type="url" id="input-link" placeholder="https://gumroad.com/your-product" value="https://gumroad.com" required>
+                    <small class="hint">Where customers will be sent when they click "Buy"</small>
+                </div>
+
+                <div class="form-group">
+                    <label>📝 Headline * <span class="char-count"><span id="headline-count">0</span>/200</span></label>
+                    <textarea id="input-hook" placeholder="Enter a compelling headline, e.g.: Create Your Perfect E-Commerce Page in Seconds" maxlength="200"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>📌 Subheadline <span class="char-count"><span id="subheadline-count">0</span>/500</span></label>
+                    <textarea id="input-subheadline" placeholder="Add additional context or description (optional)" maxlength="500"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>🎯 Button Text</label>
+                    <input type="text" id="input-cta" value="Buy Now" placeholder="e.g., Get Started, Shop Now, Learn More">
+                </div>
+            </div>
+
+            <!-- Design Tab -->
+            <div class="tab-content" id="design">
+                <div class="form-group">
+                    <label>🎨 Primary Color</label>
+                    <div class="color-picker-wrapper">
+                        <input type="color" id="input-primary-color" value="#EEDC82">
+                        <span id="color-value">#EEDC82</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>🖼️ Hero Image URL</label>
+                    <input type="url" id="input-image" placeholder="https://example.com/image.jpg" value="">
+                    <small class="hint">Add a product or feature image (JPG, PNG, WebP)</small>
+                </div>
+
+                <div class="form-group">
+                    <label>🔤 Font Style</label>
+                    <select id="input-font" value="modern">
+                        <option value="modern">Modern (Default)</option>
+                        <option value="serif">Elegant (Serif)</option>
+                        <option value="monospace">Technical (Monospace)</option>
+                        <option value="playful">Playful (Rounded)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>📐 Layout Style</label>
+                    <select id="input-layout" value="centered">
+                        <option value="centered">Centered (Default)</option>
+                        <option value="left-image">Image on Left</option>
+                        <option value="right-image">Image on Right</option>
+                        <option value="full-image">Full Width Image</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Advanced Tab -->
+            <div class="tab-content" id="advanced">
+                <div class="form-group">
+                    <label>🏷️ Page Title (SEO)</label>
+                    <input type="text" id="input-seo-title" placeholder="Page title for search engines" maxlength="60">
+                    <small class="hint">Appears in browser tab and search results</small>
+                </div>
+
+                <div class="form-group">
+                    <label>📄 Meta Description (SEO)</label>
+                    <textarea id="input-seo-desc" placeholder="Description for search engines" maxlength="160"></textarea>
+                    <small class="hint">Max 160 characters</small>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="input-analytics" checked>
+                        Enable Click Analytics
+                    </label>
+                    <small class="hint">Track visitor clicks and engagement</small>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="input-social-preview" checked>
+                        Add Social Preview Image
+                    </label>
+                    <small class="hint">Customize how it looks when shared</small>
+                </div>
+            </div>
+
+            <!-- Generate Button -->
+            <button class="btn-gold" onclick="generateMagicLink()" style="width: 100%; margin-top: 20px;">✨ Generate Landing Page</button>
+
+            <!-- Output Area -->
+            <div id="output-area" style="display: none;">
+                <div class="output-success">
+                    <p>✅ <strong>Your landing page is ready!</strong></p>
+                </div>
+                <strong>📋 Share This Link</strong>
+                <div class="url-copy-wrapper">
+                    <input type="text" id="share-url" readonly>
+                    <button class="btn-copy" onclick="copyToClipboard()">📋 Copy</button>
+                </div>
+                <div class="share-buttons">
+                    <button class="share-btn" onclick="shareOnTwitter()" title="Share on Twitter">𝕏</button>
+                    <button class="share-btn" onclick="shareOnFacebook()" title="Share on Facebook">f</button>
+                    <button class="share-btn" onclick="shareOnLinkedin()" title="Share on LinkedIn">in</button>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div id="draft-list" style="margin-top: 20px; display: none;">
+                <strong>📚 Your Drafts</strong>
+                <div id="draft-items" style="margin-top: 10px;"></div>
+            </div>
+        </div>
+
+        <!-- Preview Panel -->
+        <div class="preview-container">
+            <div class="preview-header">
+                <h3>Live Preview</h3>
+                <div class="preview-controls">
+                    <button class="preview-mode-btn active" data-mode="desktop" title="Desktop view">💻</button>
+                    <button class="preview-mode-btn" data-mode="mobile" title="Mobile view">📱</button>
+                </div>
+            </div>
+
+            <div id="preview-wrapper" class="preview-wrapper desktop">
+                <div class="live-site" id="live-site">
+                    <img id="preview-image" src="" style="display: none; width: 100%; height: auto; margin-bottom: 30px; border-radius: 8px;">
+                    <h2 id="view-hook">Your headline will appear here</h2>
+                    <p id="view-subheadline" style="display: none; font-size: 16px; color: #666; margin: 15px 0;"></p>
+                    <a href="#" id="view-cta-btn" class="btn-gold">Buy Now</a>
+                </div>
+            </div>
+
+            <!-- Analytics Panel -->
+            <div id="analytics-panel" style="display: none; margin-top: 30px; padding: 20px; background: #f9f7f2; border-radius: 12px;">
+                <h4>📊 Analytics Preview</h4>
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <div class="analytics-number">0</div>
+                        <div class="analytics-label">Total Clicks</div>
+                    </div>
+                    <div class="analytics-card">
+                        <div class="analytics-number">0</div>
+                        <div class="analytics-label">Unique Visitors</div>
+                    </div>
+                    <div class="analytics-card">
+                        <div class="analytics-number">0%</div>
+                        <div class="analytics-label">Click Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template Selector Modal -->
+    <div id="template-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeTemplateModal()">&times;</button>
+            <h2>Choose a Template</h2>
+            <div class="template-grid">
+                <div class="template-card" onclick="loadTemplate('product')">
+                    <div class="template-preview">📦</div>
+                    <h4>Product Launch</h4>
+                    <p>Perfect for selling digital products</p>
+                </div>
+                <div class="template-card" onclick="loadTemplate('course')">
+                    <div class="template-preview">📚</div>
+                    <h4>Online Course</h4>
+                    <p>For educational content and courses</p>
+                </div>
+                <div class="template-card" onclick="loadTemplate('service')">
+                    <div class="template-preview">💼</div>
+                    <h4>Service Offer</h4>
+                    <p>Ideal for coaching and services</p>
+                </div>
+                <div class="template-card" onclick="loadTemplate('minimal')">
+                    <div class="template-preview">✨</div>
+                    <h4>Minimal & Clean</h4>
+                    <p>Simple and elegant design</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast" class="toast"></div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
