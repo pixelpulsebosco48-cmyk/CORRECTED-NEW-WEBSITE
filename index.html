@@ -1,196 +1,179 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales Statistics | YourBrand</title>
-    <meta name="description" content="View real-time sales statistics, total revenue, and top-performing services at YourBrand.">
-    
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* Sales Statistics Specific Styles */
-        .sales-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
-            color: var(--light);
-            padding: 3rem 2rem;
-            text-align: center;
-            margin-top: 60px;
-        }
-        .sales-header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .sales-header p { font-size: 1.2rem; opacity: 0.9; }
-        
-        .sales-summary {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        .summary-card {
-            background: var(--light);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .summary-value { font-size: 2.5rem; font-weight: 700; color: var(--primary); }
-        .summary-label { color: #666; margin-top: 0.5rem; font-size: 0.9rem; }
-        
-        .best-sellers-section {
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
-            padding: 3rem 2rem;
-            margin: 3rem 0;
-            border-radius: 20px;
-        }
-        .best-sellers-title {
-            text-align: center;
-            font-size: 2rem;
-            color: var(--light);
-            margin-bottom: 2rem;
-        }
-        
-        .top-products-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .top-product-card {
-            background: var(--light);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-            position: relative;
-        }
-        .top-product-card:hover { transform: translateY(-10px) scale(1.02); }
-        .top-product-card.rank-1 { 
-            border: 3px solid var(--warning); 
-            transform: scale(1.05); 
-            z-index: 2; 
-        }
-        .top-product-card.rank-1:hover { transform: translateY(-10px) scale(1.08); }
-        .top-product-card.rank-2 { border: 3px solid var(--primary); }
-        .top-product-card.rank-3 { border: 3px solid var(--secondary); }
-        
-        .rank-badge {
-            position: absolute;
-            top: -15px;
-            right: -15px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark);
-            background: var(--light);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-        }
-        .rank-1 .rank-badge { background: var(--warning); }
-        .rank-2 .rank-badge { background: var(--primary); color: var(--light); }
-        .rank-3 .rank-badge { background: var(--secondary); }
-
-        /* Cleaned Up Service Card Typography & Icons */
-        .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        .sales-figure {
-            color: var(--primary);
-            margin: 15px 0;
-        }
-        .sales-figure-label {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        /* Hamburger Button Reset (ensures it doesn't look like a standard button) */
-        button.hamburger {
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-        }
-
-        /* Mobile Adjustments */
-        @media (max-width: 768px) {
-            .sales-summary, .top-products-grid {
-                grid-template-columns: 1fr;
-            }
-            .top-product-card.rank-1, 
-            .top-product-card.rank-1:hover {
-                transform: scale(1) !important;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Maison Atelier</title>
+  <meta name="description" content="Premium multi-page customizable website template." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <h1><span aria-hidden="true">🚀</span> YourBrand</h1>
-            </div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="about.html" class="nav-link">About Us</a></li>
-                <li><a href="services.html" class="nav-link">Services</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-            </ul>
-            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
-                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-            </button>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html"><span>MAISON</span><em>ATELIER</em></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+      <nav class="nav" id="nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="portal.html">Portal</a>
+        <a href="payments.html">Payments</a>
+        <a href="customize.html">Customize</a>
+        <a href="stats.html">Stats</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero reveal">
+        <div>
+          <p class="eyebrow">Luxury multi-page template</p>
+          <h1>Elegant, ready-to-run, fully customizable.</h1>
+          <p class="lead">Built for customers who want a premium storefront, portal tools, payment-link rooms, and editable branding without touching complex code.</p>
+          <div class="actions">
+            <a class="btn primary" href="portal.html">Open Portal</a>
+            <a class="btn ghost" href="customize.html">Customize Design</a>
+          </div>
         </div>
-    </nav>
+        <aside class="hero-card">
+          <div class="stat"><span>Pages</span><strong>7</strong></div>
+          <div class="stat"><span>Styles</span><strong>Premium</strong></div>
+          <div class="stat"><span>Links</span><strong>Editable</strong></div>
+        </aside>
+      </section>
 
-    <section class="sales-header">
-        <div class="container">
-            <h1>Sales Statistics</h1>
-            <p>Real-time performance metrics and top sellers</p>
-        </div>
-    </section>
+      <section class="grid-3 reveal">
+        <article class="card"><h3>Luxury layout</h3><p>Minimal, refined, and product-friendly with strong hierarchy.</p></article>
+        <article class="card"><h3>Customer portal</h3><p>Functional rooms for invoices, links, and account-style content.</p></article>
+        <article class="card"><h3>Easy editing</h3><p>Simple variables and clear sections for your customers to modify.</p></article>
+      </section>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html> 
 
-    <section class="section">
-        <div class="container">
-            <div class="sales-summary">
-                <div class="summary-card">
-                    <div class="summary-value">$124.5K</div>
-                    <div class="summary-label">Total Revenue</div>
-                </div>
-                <div class="summary-card">
-                    <div class="summary-value">8,492</div>
-                    <div class="summary-label">Services Sold</div>
-                </div>
-                <div class="summary-card">
-                    <div class="summary-value">3,105</div>
-                    <div class="summary-label">Active Customers</div>
-                </div>
-            </div>
 
-            <div class="best-sellers-section">
-                <h2 class="best-sellers-title">Top Performing Services</h2>
-                <div class="top-products-grid">
-                    
-                    <div class="top-product-card rank-2">
-                        <div class="rank-badge">#2</div>
-                        <div class="service-icon"><span aria-hidden="true">🎨</span></div>
-                        <h3>Service 1</h3>
-                        <p>Comprehensive solution</p>
-                        <h2 class="sales-figure">3,240</h2>
-                        <p class="sales-figure-label">Units Sold</p>
-                    </div>
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>About - Maison Atelier</title><link rel="stylesheet" href="style.css" /></head>
+<body><div class="site-shell"><header class="topbar"><a class="brand" href="index.html"><span>MAISON</span><em>ATELIER</em></a><button class="menu-btn" id="menuBtn">☰</button><nav class="nav" id="nav"><a href="index.html">Home</a><a class="active" href="about.html">About</a><a href="portal.html">Portal</a><a href="payments.html">Payments</a><a href="customize.html">Customize</a><a href="stats.html">Stats</a><a href="contact.html">Contact</a></nav></header><main><section class="page-head reveal"><p class="eyebrow">About this template</p><h1>Premium design with practical structure.</h1><p class="lead">This template is organized for selling as a ready-to-run website package, with pages that customers can actually use and customize.</p></section><section class="grid-2 reveal"><article class="card"><h3>Commercial-ready</h3><p>Built to feel polished, consistent, and suitable for digital product delivery.</p></article><article class="card"><h3>Custom-friendly</h3><p>Brand, colors, links, and text are easy to swap for each customer.</p></article></section></main></div><script src="script.js"></script></body></html>  
 
-                    <div class="top-product-card rank-1">
-                        <div class="rank-badge">#1</div>
-                        <div class="service-icon"><span aria-hidden="true">⭐</span></div>
-                        <h3>Service 2 - Popular</h3>
-                        <p>Premium features</p>
-                        <h2 class="sales-figure">4,150</h2>
-                        <p class="sales-figure-label">Units Sold</p>
-                    </div>
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Portal - Maison Atelier</title><link rel="stylesheet" href="style.css" /></head>
+<body><div class="site-shell"><header class="topbar"><a class="brand" href="index.html"><span>MAISON</span><em>ATELIER</em></a><button class="menu-btn" id="menuBtn">☰</button><nav class="nav" id="nav"><a href="index.html">Home</a><a href="about.html">About</a><a class="active" href="portal.html">Portal</a><a href="payments.html">Payments</a><a href="customize.html">Customize</a><a href="stats.html">Stats</a><a href="contact.html">Contact</a></nav></header><main><section class="page-head reveal"><p class="eyebrow">Customer portal</p><h1>Account-style room for clients.</h1><p class="lead">Use this page for dashboard content, order details, downloads, notices, or premium service information.</p></section><section class="grid-3 reveal"><article class="card"><h3>Profile</h3><p>Customer name, plan, and status area.</p></article><article class="card"><h3>Orders</h3><p>Recent purchases and delivery records.</p></article><article class="card"><h3>Support</h3><p>Message box, ticket area, or help links.</p></article></section></main></div><script src="script.js"></script></body></html>  
 
-                    <div class="top-product-card rank-3">
-                        <div class="rank-badge">#3</div>
-                        <div class="service-icon"><span aria-hidden
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Payments - Maison Atelier</title><link rel="stylesheet" href="style.css" /></head>
+<body><div class="site-shell"><header class="topbar"><a class="brand" href="index.html"><span>MAISON</span><em>ATELIER</em></a><button class="menu-btn" id="menuBtn">☰</button><nav class="nav" id="nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="portal.html">Portal</a><a class="active" href="payments.html">Payments</a><a href="customize.html">Customize</a><a href="stats.html">Stats</a><a href="contact.html">Contact</a></nav></header><main><section class="page-head reveal"><p class="eyebrow">Payment links</p><h1>Editable payment-link rooms.</h1><p class="lead">Replace the sample links with each customer’s own payment URL or checkout destination.</p></section><section class="grid-3 reveal"><article class="card link-card"><h3>Link A</h3><p>Personal payment link slot.</p><a class="btn small" href="#" target="_blank" rel="noreferrer">Open Link</a></article><article class="card link-card"><h3>Link B</h3><p>Second checkout room.</p><a class="btn small" href="#" target="_blank" rel="noreferrer">Open Link</a></article><article class="card link-card"><h3>Link C</h3><p>Third branded payment slot.</p><a class="btn small" href="#" target="_blank" rel="noreferrer">Open Link</a></article></section></main></div><script src="script.js"></script></body></html>  
+
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Customize - Maison Atelier</title><link rel="stylesheet" href="style.css" /></head>
+<body><div class="site-shell"><header class="topbar"><a class="brand" href="index.html"><span>MAISON</span><em>ATELIER</em></a><button class="menu-btn" id="menuBtn">☰</button><nav class="nav" id="nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="portal.html">Portal</a><a href="payments.html">Payments</a><a class="active" href="customize.html">Customize</a><a href="stats.html">Stats</a><a href="contact.html">Contact</a></nav></header><main><section class="page-head reveal"><p class="eyebrow">Customization</p><h1>Simple controls for your customers.</h1><p class="lead">This page is made to feel like a settings room, even in a front-end only build.</p></section><section class="grid-2 reveal"><article class="card"><h3>Theme controls</h3><p>Color, button style, spacing, and logo placement.</p></article><article class="card"><h3>Text controls</h3><p>Welcome text, button labels, and contact details.</p></article></section></main></div><script src="script.js"></script></body></html> 
+
+
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Stats - Maison Atelier</title><link rel="stylesheet" href="style.css" /></head>
+<body><div class="site-shell"><header class="topbar"><a class="brand" href="index.html"><span>MAISON</span><em>ATELIER</em></a><button class="menu-btn" id="menuBtn">☰</button><nav class="nav" id="nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="portal.html">Portal</a><a href="payments.html">Payments</a><a href="customize.html">Customize</a><a class="active" href="stats.html">Stats</a><a href="contact.html">Contact</a></nav></header><main><section class="page-head reveal"><p class="eyebrow">Sales statistics</p><h1>Best-seller analysis panel.</h1><p class="lead">This page shows sample sales data and ranks the strongest products automatically.</p></section><section class="stats-wrap reveal"><div class="card"><h3>Top products</h3><ol id="topList"></ol></div><div class="card chart-box"><div class="bars"><span style="height:74%"></span><span style="height:52%"></span><span style="height:88%"></span><span style="height:41%"></span></div></div></section></main></div><script src="script.js"></script></body></html>  
+
+
+
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Contact - Maison Atelier</title><link rel="stylesheet" href="style.css" /></head>
+<body><div class="site-shell"><header class="topbar"><a class="brand" href="index.html"><span>MAISON</span><em>ATELIER</em></a><button class="menu-btn" id="menuBtn">☰</button><nav class="nav" id="nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="portal.html">Portal</a><a href="payments.html">Payments</a><a href="customize.html">Customize</a><a href="stats.html">Stats</a><a class="active" href="contact.html">Contact</a></nav></header><main><section class="page-head reveal"><p class="eyebrow">Contact</p><h1>Simple contact page for customers.</h1><p class="lead">Use this area for enquiries, support, or order-related messages.</p></section><section class="grid-2 reveal"><article class="card"><h3>Email</h3><p>support@yourbrand.com</p></article><article class="card"><h3>Response</h3><p>Reply within 24 hours.</p></article></section></main></div><script src="script.js"></script></body></html> 
+
+
+:root{
+  --bg:#f6f1ea;
+  --ink:#16120f;
+  --muted:#6f655c;
+  --line:#d8cbbd;
+  --accent:#7a5a3a;
+  --accent2:#2f241d;
+  --panel:#fffaf5;
+}
+*{box-sizing:border-box}
+html,body{margin:0;font-family:Inter,Georgia,serif;background:linear-gradient(180deg,#fffdfb,var(--bg));color:var(--ink)}
+a{text-decoration:none;color:inherit}
+.site-shell{max-width:1180px;margin:0 auto;padding:20px}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:14px 18px;border:1px solid var(--line);border-radius:20px;
+  background:rgba(255,250,245,.9);backdrop-filter:blur(10px);
+  position:sticky;top:14px;z-index:10
+}
+.brand{display:flex;flex-direction:column;line-height:1}
+.brand span{font-size:12px;letter-spacing:.42em}
+.brand em{font-style:normal;font-size:24px;letter-spacing:.18em}
+.nav{display:flex;gap:14px;flex-wrap:wrap}
+.nav a{padding:10px 12px;border-radius:999px;color:var(--muted)}
+.nav a.active,.nav a:hover{background:var(--accent2);color:#fff}
+.menu-btn{display:none;border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 12px}
+.hero,.page-head,.stats-wrap,.grid-2,.grid-3{display:grid;gap:18px}
+.hero{grid-template-columns:1.6fr .8fr;align-items:stretch;padding:72px 0}
+.eyebrow{letter-spacing:.25em;text-transform:uppercase;font-size:12px;color:var(--accent)}
+h1{font-size:clamp(38px,6vw,72px);line-height:.95;margin:0 0 16px}
+.lead{font-size:18px;max-width:62ch;color:var(--muted)}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:14px 18px;border-radius:999px;border:1px solid var(--line);background:#fff
+}
+.btn.primary{background:var(--accent2);color:#fff;border-color:var(--accent2)}
+.btn.small{padding:10px 14px}
+.btn.ghost{background:transparent}
+.card{
+  background:var(--panel);border:1px solid var(--line);border-radius:24px;
+  padding:22px;box-shadow:0 20px 60px rgba(31,20,12,.06)
+}
+.hero-card{display:grid;gap:14px}
+.stat{display:flex;justify-content:space-between;padding:20px;border-radius:18px;background:#fff;border:1px solid var(--line)}
+.stat strong{font-size:28px}
+.grid-3{grid-template-columns:repeat(3,1fr);padding:0 0 40px}
+.grid-2{grid-template-columns:repeat(2,1fr);padding:0 0 40px}
+.page-head{padding:56px 0 24px}
+.link-card p,.card p{color:var(--muted)}
+.stats-wrap{grid-template-columns:1fr 1fr;padding:0 0 40px}
+.bars{display:flex;align-items:flex-end;gap:14px;height:240px;padding:18px}
+.bars span{
+  flex:1;border-radius:18px 18px 6px 6px;
+  background:linear-gradient(180deg,#a47b57,#2f241d)
+}
+.reveal{animation:fadeUp .7s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media (max-width: 900px){
+  .hero,.grid-3,.grid-2,.stats-wrap{grid-template-columns:1fr}
+  .nav{
+    display:none;position:absolute;top:74px;left:20px;right:20px;padding:14px;
+    background:#fff;border:1px solid var(--line);border-radius:18px
+  }
+  .nav.open{display:flex;flex-direction:column}
+  .menu-btn{display:inline-flex}
+}  
+
+const btn=document.getElementById('menuBtn');
+const nav=document.getElementById('nav');
+
+if(btn&&nav){
+  btn.addEventListener('click',()=>nav.classList.toggle('open'));
+}
+
+const topList=document.getElementById('topList');
+if(topList){
+  const sales=[['Silk Scarf',148],['Leather Tote',122],['Cashmere Wrap',166],['Heritage Coat',94]];
+  sales.sort((a,b)=>b[1]-a[1]).forEach(([name,val],i)=>{
+    const li=document.createElement('li');
+    li.textContent=`${i+1}. ${name} — ${val}`;
+    topList.appendChild(li);
+  });
+}
+
+document.querySelectorAll('.reveal').forEach((el,i)=>{
+  el.style.animationDelay=`${i*0.08}s`;
+}); 
+
+
